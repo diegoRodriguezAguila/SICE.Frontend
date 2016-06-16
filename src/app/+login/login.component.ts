@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Headers } from '@angular/http';
 import {Injectable, Inject} from '@angular/core';
 import { contentHeaders } from '../shared/headers';
 import {RouterLink} from '@angular/router/esm/src/directives/router_link';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
     moduleId: module.id,
@@ -12,8 +13,10 @@ import {RouterLink} from '@angular/router/esm/src/directives/router_link';
 })
 export class LoginComponent implements OnInit {
 
-    constructor(public router:Router, public http:Http,
-                @Inject('ApiEndpoint') private apiEndpoint:string) {
+    @Output() onLoggedIn = new EventEmitter<string>();
+
+    constructor(public router:Router,
+                private authService: AuthenticationService) {
     }
 
     ngOnInit() {
@@ -24,19 +27,7 @@ export class LoginComponent implements OnInit {
 
     login(event, username, password) {
         event.preventDefault();
-        let body = JSON.stringify({username, password});
-        this.http.post(`${this.apiEndpoint}/sessions`, body, {headers: contentHeaders})
-            .subscribe(
-                response => {
-                    //noinspection TypeScriptUnresolvedVariable
-                    localStorage.setItem('jwt', response.json().authentication_token);
-                    this.router.navigateByUrl('/home');
-                },
-                error => {
-                    alert(error.text());
-                    console.log(error.text());
-                }
-            );
+        this.authService.login(username, password);
     }
 
 

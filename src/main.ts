@@ -2,6 +2,7 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
 import { provide } from '@angular/core';
 import { SiceFrontendAppComponent } from './app/sice-frontend.component';
+import {AuthenticationService} from './app/services/authentication.service';
 import { environment } from './app/environment';
 import { AuthConfig, AuthHttp } from 'angular2-jwt/angular2-jwt';
 import { ROUTER_PROVIDERS } from '@angular/router';
@@ -24,6 +25,7 @@ bootstrap(SiceFrontendAppComponent, [
             }), http);
         },
         deps: [Http]
-    })
+    }),
+    AuthenticationService
 ]);
 
