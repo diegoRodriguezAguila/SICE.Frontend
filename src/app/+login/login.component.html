@@ -10,15 +10,15 @@
           <div class="col-sm-6 col-md-6 col-md-offset-3">
             <h4 class="text-center login-title">Ingrese sus datos</h4>
             <div class="account-wall">
-              <form class="form-horizontal" action="session/auth_user" method="POST" role="form">
+              <form class="form-horizontal" (submit)="login($event, username.value, password.value)" role="form">
                 <div class="form-group input-group">
-                  <span class="input-group-addon fui-user"></span>
-                  <input type="text" class="form-control" name="username" placeholder="Usuario"
+                  <span class="input-group-addon glyphicon glyphicon-user"></span>
+                  <input type="text" class="form-control" #username id="username" placeholder="Usuario"
                          required autofocus/>
                 </div>
                 <div class="form-group input-group">
-                  <span class="input-group-addon fui-lock"></span>
-                  <input type="password" class="form-control" name="password" placeholder="Password"
+                  <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                  <input type="password" class="form-control" #password id="password" placeholder="Password"
                          required/>
                 </div>
                 <div class="form-group">
