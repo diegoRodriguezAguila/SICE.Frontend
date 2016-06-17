@@ -33,10 +33,22 @@ export class AuthenticationService {
             );
     }
 
-    public logOut(){
+    public logOut() {
         let username = localStorage.getItem('username');
-        localStorage.removeItem('jwt');
-        localStorage.removeItem('username');
-        this.onLoggedOut.emit(username);
+        let token = localStorage.getItem('jwt');
+        if (token == null)
+            this.onLoggedOut.emit(username);
+        this.http.delete(`${this.apiEndpoint}/sessions/${token}`, {headers: contentHeaders})
+            .subscribe(
+                response => {
+                    localStorage.removeItem('jwt');
+                    localStorage.removeItem('username');
+                    this.onLoggedOut.emit(username);
+                },
+                error => {
+                    alert('No se pudo cerrar la sesión!');
+                    console.log(error.text());
+                }
+            );
     }
 }
