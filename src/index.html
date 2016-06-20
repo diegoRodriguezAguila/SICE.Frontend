@@ -9,9 +9,20 @@
     {{#unless environment.production}}
     <script src="/ember-cli-live-reload.js" type="text/javascript"></script>
     {{/unless}}
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+
     <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap Material Design -->
+    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap-material-design/dist/css/bootstrap-material-design.css">
+    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap-material-design/dist/css/ripples.css">
+    <script src="/vendor/bootstrap-material-design/dist/js/material.js"></script>
+    <script src="/vendor/bootstrap-material-design/dist/js/ripples.js"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
@@ -27,7 +38,5 @@
         System.import('main');
     }).catch(console.error.bind(console));
 </script>
-
-
 </body>
 </html>

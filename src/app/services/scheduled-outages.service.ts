@@ -1,5 +1,6 @@
 import { Injectable, Inject} from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt/angular2-jwt';
 import { contentHeaders } from '../shared/headers';
 import '../shared/rxjs-operators';
 import {Observable} from "rxjs/Observable";
@@ -8,13 +9,13 @@ import {ScheduledOutage} from "../models/scheduled-outage";
 @Injectable()
 export class ScheduledOutagesService {
 
-    constructor(public http:Http, @Inject('ApiEndpoint')
+    constructor(public authHttp: AuthHttp, @Inject('ApiEndpoint')
     private apiEndpoint:string) {
     }
 
     public getScheduledOutages(page:number = 1): Observable<ScheduledOutage[]>  {
         //noinspection TypeScriptUnresolvedFunction
-        return this.http.get(`${this.apiEndpoint}/scheduled_outages?page=${page}`,
+        return this.authHttp.get(`${this.apiEndpoint}/scheduled_outages?page=${page}`,
             {headers: contentHeaders})
             .map(this.extractData)
             .catch(this.handleError);

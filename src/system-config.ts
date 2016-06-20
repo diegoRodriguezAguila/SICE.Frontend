@@ -4,6 +4,7 @@
 /** Map relative paths to URLs. */
 const map:any = {
     '@angular2-material': 'vendor/@angular2-material',
+    'bootstrap-material-design': 'vendor/bootstrap-material-design',
 };
 
 /** User packages configuration. */
@@ -17,6 +18,7 @@ const materialPkgs:string[] = [
     'list',
     'card',
     'input',
+    'progress-circle'
 ];
 
 
