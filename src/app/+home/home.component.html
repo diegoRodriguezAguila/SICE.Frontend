@@ -2,21 +2,21 @@
 <div class="page-header">
     <h1>Cortes programados</h1>
 </div>
-<md-card>
-    <div class="row" *ngIf="!scheduledOutages" >
-        <md-spinner class="col-md-1 vcenter"  style="height: 80px; width: 80px;"></md-spinner>
+<div class="well bs-component">
+    <div class="row" *ngIf="!scheduledOutages">
+        <md-spinner class="col-md-1 vcenter" style="height: 80px; width: 80px;"></md-spinner>
         <h4 class="col-md-8 vcenter">Cargando cortes programados&#x2026;</h4>
     </div>
-    <md-card-content>
-        <md-nav-list *ngIf="scheduledOutages">
-            <md-list-item *ngFor="let scheduledOutage of scheduledOutages">
-                <md-card-title> {{scheduledOutage.start_date | amDateFormat:'dddd, DD MMMM, YYYY'}} </md-card-title>
-                <h3 md-line> {{scheduledOutage.zones}} </h3>
-                <p md-line>
-                    <span> {{scheduledOutage.start_date}} </span>
-                    <span> {{scheduledOutage.end_date}} </span>
-                </p>
-            </md-list-item>
-        </md-nav-list>
-    </md-card-content>
-</md-card>
+    <md-nav-list *ngIf="scheduledOutages">
+        <md-list-item *ngFor="let scheduledOutage of scheduledOutages">
+            <a href="#"></a>
+            <h4 style="font-size: 26px" md-line> {{scheduledOutage.start_date |
+                amDateFormat:'dddd, DD [de] MMMM, YYYY' | capitalize}} </h4>
+            <p style="font-size: 18px" md-line>
+                <span>De {{scheduledOutage.start_date | amDateFormat:'HH:mm'}} </span>
+                <span> a {{scheduledOutage.end_date | amDateFormat:'HH:mm'}} </span>
+            </p>
+            <p md-line> {{scheduledOutage.zones}} </p>
+        </md-list-item>
+    </md-nav-list>
+</div>

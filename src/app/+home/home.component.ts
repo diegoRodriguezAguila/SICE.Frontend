@@ -7,12 +7,13 @@ import { MD_PROGRESS_CIRCLE_DIRECTIVES } from '@angular2-material/progress-circl
 import {DateFormatPipe} from 'angular2-moment';
 import {ScheduledOutage} from "../models/scheduled-outage";
 import {ScheduledOutagesService} from "../services/scheduled-outages.service";
+import {CapitalizePipe} from '../pipes/capitalize.pipe';
 
 @Component({
     moduleId: module.id,
     selector: 'app-home',
     templateUrl: 'home.component.html',
-    pipes: [DateFormatPipe],
+    pipes: [DateFormatPipe, CapitalizePipe],
     styles: [`
     .vcenter {
         display: inline-block;
