@@ -4,6 +4,6 @@ export class SiceFrontendPage {
   }
 
   getParagraphText() {
-    return element(by.css('sice-frontend-app h1')).getText();
+    return element(by.css('app-root h1')).getText();
   }
 }

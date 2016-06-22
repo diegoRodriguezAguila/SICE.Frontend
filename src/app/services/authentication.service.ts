@@ -9,6 +9,7 @@ import { contentHeaders } from '../shared/headers';
 export class AuthenticationService {
     @Output() onLoggedIn = new EventEmitter<string>();
     @Output() onLoggedOut = new EventEmitter<string>();
+    public currentUser: string;
 
     constructor(public http:Http, @Inject('ApiEndpoint')
     private apiEndpoint:string) {
@@ -24,6 +25,7 @@ export class AuthenticationService {
                     let session = response.json();
                     localStorage.setItem('jwt', session.authentication_token);
                     localStorage.setItem('username', session.username);
+                    this.currentUser = session.username;
                     this.onLoggedIn.emit(session.username);
                 },
                 error => {
@@ -43,6 +45,7 @@ export class AuthenticationService {
                 response => {
                     localStorage.removeItem('jwt');
                     localStorage.removeItem('username');
+                    this.currentUser = null;
                     this.onLoggedOut.emit(username);
                 },
                 error => {
@@ -50,5 +53,9 @@ export class AuthenticationService {
                     console.log(error.text());
                 }
             );
+    }
+
+    public isLoggedIn(){
+        return localStorage.getItem('jwt');
     }
 }

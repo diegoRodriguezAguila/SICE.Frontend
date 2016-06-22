@@ -1,12 +1,9 @@
 import { bootstrap } from '@angular/platform-browser-dynamic';
-import { enableProdMode } from '@angular/core';
-import { provide } from '@angular/core';
-import { SiceFrontendAppComponent } from './app/sice-frontend.component';
-import {AuthenticationService} from './app/services/authentication.service';
-import {ScheduledOutagesService} from './app/services/scheduled-outages.service'
+import { enableProdMode, provide} from '@angular/core';
+import { AppComponent }         from './app/app.component';
+import { APP_ROUTER_PROVIDERS } from './app/app.routes';
 import { environment } from './app/environment';
 import { AuthConfig, AuthHttp } from 'angular2-jwt/angular2-jwt';
-import { ROUTER_PROVIDERS } from '@angular/router';
 import { Http, HTTP_PROVIDERS } from '@angular/http';
 import * as moment from 'moment';
 
@@ -16,8 +13,8 @@ if (environment.production) {
     apiValue = 'https://sice.elfec.bo/api';
 }
 moment.locale('es');
-bootstrap(SiceFrontendAppComponent, [
-    ROUTER_PROVIDERS,
+bootstrap(AppComponent, [
+    APP_ROUTER_PROVIDERS,
     HTTP_PROVIDERS,
     provide('ApiEndpoint', {useValue: apiValue}),
     provide(AuthHttp, {
@@ -27,8 +24,6 @@ bootstrap(SiceFrontendAppComponent, [
             }), http);
         },
         deps: [Http]
-    }),
-    AuthenticationService,
-    ScheduledOutagesService
+    })
 ]);
 

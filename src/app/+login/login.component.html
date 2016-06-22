@@ -1,36 +1,33 @@
 <br>
 <div class="row">
-  <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-2">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h2 class="panel-title">Iniciar Sesion</h2>
-      </div>
-      <div class="panel-body login-form">
-        <div class="row">
-          <div class="col-sm-6 col-md-6 col-md-offset-3">
-            <h4 class="text-center login-title">Ingrese sus datos</h4>
-            <div class="account-wall">
-              <form class="form-horizontal" (submit)="login($event, username.value, password.value)" role="form">
-                <div class="form-group input-group">
-                  <span class="input-group-addon glyphicon glyphicon-user"></span>
-                  <input type="text" class="form-control" #username id="username" placeholder="Usuario"
-                         required autofocus/>
-                </div>
-                <div class="form-group input-group">
-                  <span class="input-group-addon glyphicon glyphicon-lock"></span>
-                  <input type="password" class="form-control" #password id="password" placeholder="Password"
-                         required/>
-                </div>
-                <div class="form-group">
-                  <button class="btn btn-block btn-primary" type="submit">
-                    Ingresar
-                  </button>
-                </div>
-              </form>
+    <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-2">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Iniciar Sesion</h2>
             </div>
-          </div>
+            <div class="panel-body login-form">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-md-offset-3">
+                        <h4 class="login-title">Ingrese sus datos</h4>
+                        <div class="account-wall">
+                            <form (submit)="login($event, username.value, password.value)"
+                                  role="form">
+                                <md-input type="text" placeholder="Usuario" #username id="username"
+                                          placeholder="Usuario" required autofocus>
+                                    <span md-prefix class="glyphicon glyphicon-user">&nbsp;</span>
+                                </md-input>
+
+                                <md-input align="start" type="password" placeholder="Contraseña" #password
+                                          id="password" placeholder="Password"
+                                          required>
+                                    <span md-prefix class="glyphicon glyphicon-lock">&nbsp;</span>
+                                </md-input>
+                                <button md-raised-button color="primary" type="submit">INGRESAR</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

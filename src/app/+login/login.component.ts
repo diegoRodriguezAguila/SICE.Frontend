@@ -3,13 +3,16 @@ import { Router } from '@angular/router';
 import { Http, Headers } from '@angular/http';
 import {Injectable, Inject} from '@angular/core';
 import { contentHeaders } from '../shared/headers';
-import {RouterLink} from '@angular/router/esm/src/directives/router_link';
+import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
+import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
+
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
     moduleId: module.id,
     selector: 'app-login',
     templateUrl: 'login.component.html',
+    directives: [MD_INPUT_DIRECTIVES, MD_BUTTON_DIRECTIVES]
 })
 export class LoginComponent implements OnInit {
 
@@ -20,9 +23,6 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (localStorage.getItem('jwt')) {
-            this.router.navigateByUrl('/home');
-        }
     }
 
     login(event, username, password) {

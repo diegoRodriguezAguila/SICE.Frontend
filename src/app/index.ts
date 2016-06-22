@@ -1,2 +1,2 @@
 export * from './environment';
-export * from './sice-frontend.component';
+export * from './app.component';
