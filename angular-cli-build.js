@@ -14,7 +14,8 @@ module.exports = function (defaults) {
             '@angular/**/*.+(js|js.map)',
             'angular2-jwt/**/*.+(js|js.map)',
             '@angular2-material/**/*.js',
-            'bootstrap-material-design/dist/**/*.+(js|css)'
+            'bootstrap-material-design/dist/**/*.+(js|css)',
+            'angular2-moment/*.+(js|js.map)'
         ]
     });
 };

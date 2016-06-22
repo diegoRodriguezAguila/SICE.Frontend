@@ -5,11 +5,18 @@
 const map:any = {
     '@angular2-material': 'vendor/@angular2-material',
     'bootstrap-material-design': 'vendor/bootstrap-material-design',
+    'angular2-moment': 'vendor/angular2-moment'
 };
 
 /** User packages configuration. */
-const packages:any = {};
+const packages:any = {
+    'angular2-moment': { main: 'index.js', defaultExtension: 'js' },
+};
 
+/** User paths configuration */
+const paths:any = {
+    'moment': "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment-with-locales.js"
+};
 // put the names of any of your Material components here
 const materialPkgs:string[] = [
     'core',
@@ -68,7 +75,13 @@ System.config({
         'angular2-jwt': 'vendor/angular2-jwt',
         'main': 'main.js'
     },
-    packages: cliSystemConfigPackages
+    packages: cliSystemConfigPackages,
+    paths: paths,
+    meta: {
+        'moment': {
+            format: 'global'
+        }
+    }
 });
 
 // Apply the user's configuration.

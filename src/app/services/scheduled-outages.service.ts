@@ -23,7 +23,16 @@ export class ScheduledOutagesService {
 
     private extractData(res: Response) {
         let body = res.json();
-        return body.data || { };
+        let data = body.data;
+        if(!data)
+            return { };
+        data.forEach((d) => {
+            //noinspection TypeScriptUnresolvedVariable
+            d.start_date = new Date(d.start_date);
+            //noinspection TypeScriptUnresolvedVariable
+            d.end_date = new Date(d.end_date);
+        });
+        return data;
     }
 
     private handleError (error: any) {

@@ -3,14 +3,18 @@
     <h1>Cortes programados</h1>
 </div>
 <md-card>
-    <md-spinner></md-spinner>
+    <div class="row" *ngIf="!scheduledOutages" >
+        <md-spinner class="col-md-1 vcenter"  style="height: 80px; width: 80px;"></md-spinner>
+        <h4 class="col-md-8 vcenter">Cargando cortes programados&#x2026;</h4>
+    </div>
     <md-card-content>
-        <md-nav-list>
+        <md-nav-list *ngIf="scheduledOutages">
             <md-list-item *ngFor="let scheduledOutage of scheduledOutages">
+                <md-card-title> {{scheduledOutage.start_date | amDateFormat:'dddd, DD MMMM, YYYY'}} </md-card-title>
                 <h3 md-line> {{scheduledOutage.zones}} </h3>
                 <p md-line>
                     <span> {{scheduledOutage.start_date}} </span>
-                    <span class="demo-2"> -- {{scheduledOutage.end_date}} </span>
+                    <span> {{scheduledOutage.end_date}} </span>
                 </p>
             </md-list-item>
         </md-nav-list>

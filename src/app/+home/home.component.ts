@@ -4,7 +4,7 @@ import { Router} from '@angular/router';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import { MD_PROGRESS_CIRCLE_DIRECTIVES } from '@angular2-material/progress-circle';
-
+import {DateFormatPipe} from 'angular2-moment';
 import {ScheduledOutage} from "../models/scheduled-outage";
 import {ScheduledOutagesService} from "../services/scheduled-outages.service";
 
@@ -12,6 +12,13 @@ import {ScheduledOutagesService} from "../services/scheduled-outages.service";
     moduleId: module.id,
     selector: 'app-home',
     templateUrl: 'home.component.html',
+    pipes: [DateFormatPipe],
+    styles: [`
+    .vcenter {
+        display: inline-block;
+        vertical-align: middle;
+        float: none;
+    }`],
     directives: [MD_LIST_DIRECTIVES, MD_CARD_DIRECTIVES, MD_PROGRESS_CIRCLE_DIRECTIVES]
 })
 export class HomeComponent implements OnInit {
