@@ -2,18 +2,18 @@
  * Created by drodriguez on 22/06/2016.
  */
 import { RouterConfig }          from '@angular/router';
-import { HomeComponent } from './home.component';
+import { OutageListComponent } from './outage-list.component';
 import { AuthGuard } from '../guards/auth.guard';
 
-export const HomeRoutes: RouterConfig = [
+export const OutagesRoutes:RouterConfig = [
     {
         path: '',
-        redirectTo: '/home',
+        redirectTo: '/outages',
         terminal: true
     },
     {
-        path: 'home',
-        component: HomeComponent,
+        path: 'outages',
+        component: OutageListComponent,
         canActivate: [AuthGuard]
     }
 ];

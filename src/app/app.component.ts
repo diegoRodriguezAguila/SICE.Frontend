@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES , Router}  from '@angular/router';
 import {LoginComponent} from "./+login/login.component";
-import { HomeComponent } from './+home/home.component';
+import { OutageListComponent } from './+outages/outage-list.component';
 import {AuthenticationService} from './services/authentication.service';
 import {ScheduledOutagesService} from './services/scheduled-outages.service'
 @Component({
@@ -31,11 +31,10 @@ export class AppComponent {
 
     onLoggedIn(username: string) {
         this.username = username;
-        this.router.navigate(['/home']);
+        this.router.navigate(['/outages']);
     }
 
     onLoggedOut(username: string) {
-        alert("por alguna razon llego aqui");
         this.router.navigate(['/login']);
     }
 

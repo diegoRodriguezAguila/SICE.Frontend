@@ -5,11 +5,11 @@ import { provideRouter, RouterConfig }  from '@angular/router';
 
 
 import {LoginRoutes, AUTH_PROVIDERS} from "./+login/login.routes";
-import { HomeRoutes} from './+home/home.routes';
+import { OutagesRoutes} from './+outages/outages.routes';
 
 
 export const routes: RouterConfig = [
-    ...HomeRoutes,
+    ...OutagesRoutes,
     ...LoginRoutes,
 ];
 

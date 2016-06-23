@@ -1,0 +1,35 @@
+<br>
+<div class="page-header">
+    <h1>Cortes programados</h1>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <div class="row" *ngIf="!scheduledOutages && !errorMsg">
+            <md-spinner class="col-md-1 vcenter" style="height: 80px; width: 80px;"></md-spinner>
+            <h4 class="col-md-8 vcenter">Cargando cortes programados&#x2026;</h4>
+        </div>
+        <div *ngIf="errorMsg" class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            Ocurrió un error al tratar de cargar los cortes programados:<br/><br/>
+            <strong>{{errorMsg}}</strong><br/><br/>
+            <a href="javascript:" (click)="loadScheduledOutages()"
+               class="alert-link">Intentar cargar de nuevo</a>
+        </div>
+        <md-nav-list *ngIf="scheduledOutages">
+            <md-list-item *ngFor="let scheduledOutage of scheduledOutages">
+                <a href="#"></a>
+                <h4 style="font-size: 23px" md-line> {{scheduledOutage.start_date |
+                    amDateFormat:'dddd, DD [de] MMMM, YYYY' | capitalize}} </h4>
+                <p style="font-size: 18px" md-line>
+                    <span>De {{scheduledOutage.start_date | amDateFormat:'HH:mm'}} </span>
+                    <span> a {{scheduledOutage.end_date | amDateFormat:'HH:mm'}} </span>
+                </p>
+                <p md-line> {{scheduledOutage.zones}} </p>
+            </md-list-item>
+        </md-nav-list>
+        <button class="pull-right" color="primary" md-fab title="Agregar corte programado"
+                (click)="btnAddClick()">
+            <md-icon class="md-24">add</md-icon>
+        </button>
+    </div>
+</div>

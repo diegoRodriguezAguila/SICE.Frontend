@@ -25,7 +25,8 @@ const materialPkgs:string[] = [
     'list',
     'card',
     'input',
-    'progress-circle'
+    'progress-circle',
+    'icon'
 ];
 
 
@@ -55,7 +56,7 @@ const barrels:string[] = [
     'app',
     'app/shared',
     'app/+login',
-    'app/+home',
+    'app/+outages',
 /** @cli-barrel */
 ];
 
