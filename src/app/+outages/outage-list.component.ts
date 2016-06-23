@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
 
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
-import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import {MdIcon, MdIconRegistry} from '@angular2-material/icon';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
 import { MD_PROGRESS_CIRCLE_DIRECTIVES } from '@angular2-material/progress-circle';
@@ -23,8 +22,8 @@ import {CapitalizePipe} from '../pipes/capitalize.pipe';
         vertical-align: middle;
         float: none;
     }`],
-    directives: [MD_LIST_DIRECTIVES, MD_CARD_DIRECTIVES,
-        MD_PROGRESS_CIRCLE_DIRECTIVES, MD_BUTTON_DIRECTIVES, MdIcon],
+    directives: [MD_LIST_DIRECTIVES, MD_PROGRESS_CIRCLE_DIRECTIVES,
+        MD_BUTTON_DIRECTIVES, MdIcon],
     providers: [MdIconRegistry]
 })
 export class OutageListComponent implements OnInit {

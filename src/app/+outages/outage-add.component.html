@@ -1,3 +1,48 @@
-<p>
-    outage-add works!
-</p>
+<br>
+<div class="page-header">
+    <h1>Agregar corte programado</h1>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <form class="form-horizontal" method="post"><input type="hidden" name="convertGET" value="1">
+            <div class="form-group is-empty">
+                <label for="inputEmail" class="col-md-2 control-label">Email</label>
+
+                <div class="col-md-10">
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="togglebutton">
+                        <label>
+                            <input type="checkbox" checked=""><span class="toggle"></span> Toggle button
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group is-empty is-fileinput">
+                <label for="inputFile" class="col-md-2 control-label">File</label>
+
+                <div class="col-md-10">
+                    <input type="text" readonly="" class="form-control" placeholder="Browse...">
+                    <input type="file" id="inputFile" multiple="">
+                </div>
+            </div>
+            <div class="form-group is-empty">
+                <label for="textArea" class="col-md-2 control-label">Textarea</label>
+
+                <div class="col-md-10">
+                    <textarea class="form-control" rows="3" id="textArea"></textarea>
+                    <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-2">
+                    <button type="button" class="btn btn-default">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
