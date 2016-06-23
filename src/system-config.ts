@@ -5,17 +5,19 @@
 const map:any = {
     '@angular2-material': 'vendor/@angular2-material',
     'bootstrap-material-design': 'vendor/bootstrap-material-design',
-    'angular2-moment': 'vendor/angular2-moment'
+    'angular2-moment': 'vendor/angular2-moment',
+    'ng2-datetime': 'vendor/ng2-datetime'
 };
 
 /** User packages configuration. */
 const packages:any = {
     'angular2-moment': { main: 'index.js', defaultExtension: 'js' },
+    'ng2-datetime': {  main: 'ng2-datetime.js', defaultExtension: 'js'}
 };
 
 /** User paths configuration */
 const paths:any = {
-    'moment': "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment-with-locales.js"
+    'moment': "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment-with-locales.js",
 };
 // put the names of any of your Material components here
 const materialPkgs:string[] = [

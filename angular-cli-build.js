@@ -15,7 +15,8 @@ module.exports = function (defaults) {
             'angular2-jwt/**/*.+(js|js.map)',
             '@angular2-material/**/*.js',
             'bootstrap-material-design/dist/**/*.+(js|css)',
-            'angular2-moment/*.+(js|js.map)'
+            'angular2-moment/*.+(js|js.map)',
+            'ng2-datetime/**/*.+(js|js.map|css)',
         ]
     });
 };

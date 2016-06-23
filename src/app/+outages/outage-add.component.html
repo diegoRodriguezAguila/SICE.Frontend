@@ -5,11 +5,11 @@
 <div class="panel panel-primary">
     <div class="panel-body">
         <form class="form-horizontal" method="post"><input type="hidden" name="convertGET" value="1">
-            <div class="form-group is-empty">
-                <label for="inputEmail" class="col-md-2 control-label">Email</label>
-
-                <div class="col-md-10">
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Fecha de inicio</label>
+                <div class="col-md-offset-2 col-md-10">
+                    <datetime [(ngModel)]="startDate" [timepicker]="{showMeridian: false, minuteStep: 5}"
+                              [datepicker]="{icon: 'glyphicon glyphicon-calendar'}"></datetime>
                 </div>
             </div>
             <div class="form-group">
@@ -19,14 +19,6 @@
                             <input type="checkbox" checked=""><span class="toggle"></span> Toggle button
                         </label>
                     </div>
-                </div>
-            </div>
-            <div class="form-group is-empty is-fileinput">
-                <label for="inputFile" class="col-md-2 control-label">File</label>
-
-                <div class="col-md-10">
-                    <input type="text" readonly="" class="form-control" placeholder="Browse...">
-                    <input type="file" id="inputFile" multiple="">
                 </div>
             </div>
             <div class="form-group is-empty">
