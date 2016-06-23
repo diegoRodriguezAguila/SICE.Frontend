@@ -3,6 +3,7 @@
  */
 import { RouterConfig }          from '@angular/router';
 import { OutageListComponent } from './outage-list.component';
+import { OutageAddComponent } from './outage-add.component';
 import { AuthGuard } from '../guards/auth.guard';
 
 export const OutagesRoutes:RouterConfig = [
@@ -14,6 +15,15 @@ export const OutagesRoutes:RouterConfig = [
     {
         path: 'outages',
         component: OutageListComponent,
+        canActivate: [AuthGuard],
+        children: [
+
+        ]
+    },
+    {
+        path: 'outages/add',
+        component: OutageAddComponent,
         canActivate: [AuthGuard]
     }
+
 ];

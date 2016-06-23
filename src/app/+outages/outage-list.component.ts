@@ -56,7 +56,7 @@ export class OutageListComponent implements OnInit {
     }
 
     public btnAddClick() {
-        this.router.navigateByUrl('/login');
+        this.router.navigate(['/outages/add']);
     }
 
 }
