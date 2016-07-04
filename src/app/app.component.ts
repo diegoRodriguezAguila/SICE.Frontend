@@ -4,13 +4,16 @@ import {LoginComponent} from "./+login/login.component";
 import { OutageListComponent } from './+outages/outage-list.component';
 import {AuthenticationService} from './services/authentication.service';
 import {ScheduledOutagesService} from './services/scheduled-outages.service'
+import {PowerPolesService} from './services/power-poles.service'
+
 @Component({
     moduleId: module.id,
     selector: 'app-root',
     templateUrl: 'app.component.html',
     providers:  [
         ScheduledOutagesService,
-        AuthenticationService
+        AuthenticationService,
+        PowerPolesService
     ],
     directives: [ROUTER_DIRECTIVES]
 })

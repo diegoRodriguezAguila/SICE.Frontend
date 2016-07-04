@@ -17,6 +17,7 @@ module.exports = function (defaults) {
             'bootstrap-material-design/dist/**/*.+(js|css)',
             'angular2-moment/*.+(js|js.map)',
             'ng2-datetime/**/*.+(js|js.map|css)',
+            'ng2-bootstrap/**/*.+(js|js.map)'
         ]
     });
 };

@@ -56,6 +56,6 @@ export class AuthenticationService {
     }
 
     public isLoggedIn(){
-        return localStorage.getItem('jwt');
+        return localStorage.getItem('jwt') != null;
     }
 }

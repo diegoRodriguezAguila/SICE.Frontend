@@ -6,13 +6,15 @@ const map:any = {
     '@angular2-material': 'vendor/@angular2-material',
     'bootstrap-material-design': 'vendor/bootstrap-material-design',
     'angular2-moment': 'vendor/angular2-moment',
-    'ng2-datetime': 'vendor/ng2-datetime'
+    'ng2-datetime': 'vendor/ng2-datetime',
+    'ng2-bootstrap': 'vendor/ng2-bootstrap'
 };
 
 /** User packages configuration. */
 const packages:any = {
     'angular2-moment': { main: 'index.js', defaultExtension: 'js' },
-    'ng2-datetime': {  main: 'ng2-datetime.js', defaultExtension: 'js'}
+    'ng2-datetime': {  main: 'ng2-datetime.js', defaultExtension: 'js'},
+    'ng2-bootstrap': {  main: 'ng2-bootstrap.js', defaultExtension: 'js'}
 };
 
 /** User paths configuration */

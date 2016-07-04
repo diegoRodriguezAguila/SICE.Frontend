@@ -1,5 +1,6 @@
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { enableProdMode, provide} from '@angular/core';
+import { FORM_DIRECTIVES } from '@angular/common';
 import { AppComponent }         from './app/app.component';
 import { APP_ROUTER_PROVIDERS } from './app/app.routes';
 import { environment } from './app/environment';
@@ -16,6 +17,7 @@ moment.locale('es');
 bootstrap(AppComponent, [
     APP_ROUTER_PROVIDERS,
     HTTP_PROVIDERS,
+    FORM_DIRECTIVES,
     provide('ApiEndpoint', {useValue: apiValue}),
     provide(AuthHttp, {
         useFactory: (http) => {

@@ -4,35 +4,102 @@
 </div>
 <div class="panel panel-primary">
     <div class="panel-body">
-        <form class="form-horizontal" method="post"><input type="hidden" name="convertGET" value="1">
+        <form class="form-horizontal" method="post">
             <div class="form-group">
                 <label class="col-md-2 control-label">Fecha de inicio</label>
-                <div class="col-md-offset-2 col-md-10">
-                    <datetime [(ngModel)]="startDate" [timepicker]="{showMeridian: false, minuteStep: 5}"
-                              [datepicker]="{icon: 'glyphicon glyphicon-calendar'}"></datetime>
+                <div class="col-md-10">
+                    <datetime required [(ngModel)]="startDate" [timepicker]="{showMeridian: false, minuteStep: 5}"
+                              [(datepicker)]="startDatepickerOptions" (dateChange)="startDateChanged()"></datetime>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <div class="togglebutton">
-                        <label>
-                            <input type="checkbox" checked=""><span class="toggle"></span> Toggle button
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group is-empty">
-                <label for="textArea" class="col-md-2 control-label">Textarea</label>
-
+                <label class="col-md-2 control-label">Fecha de finalización</label>
                 <div class="col-md-10">
-                    <textarea class="form-control" rows="3" id="textArea"></textarea>
-                    <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+                    <datetime required [(ngModel)]="endDate" [timepicker]="{showMeridian: false, minuteStep: 5}"
+                              [(datepicker)]="endDatepickerOptions"></datetime>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="zones" class="col-md-2 control-label">Zonas</label>
+                <div class="col-md-8">
+                    <textarea required class="form-control" [(ngModel)]="zones"
+                              maxlength="1024" rows="2" id="zones"></textarea>
+                    <md-hint class="pull-right" align="end">{{zones.length}} / 1024</md-hint>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="industries" class="col-md-2 control-label">Industrias</label>
+                <div class="col-md-8">
+                    <textarea class="form-control" [(ngModel)]="industries"
+                              maxlength="1024" rows="2" id="industries"></textarea>
+                    <md-hint class="pull-right" align="end">{{industries.length}} / 1024</md-hint>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="buildings" class="col-md-2 control-label">Edificios</label>
+                <div class="col-md-8">
+                    <textarea class="form-control" [(ngModel)]="buildings"
+                              maxlength="1024" rows="2" id="buildings"></textarea>
+                    <md-hint class="pull-right" align="end">{{buildings.length}} / 1024</md-hint>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="hospitals" class="col-md-2 control-label">Hospitales - Clínicas</label>
+                <div class="col-md-8">
+                    <textarea class="form-control" [(ngModel)]="hospitals"
+                              maxlength="1024" rows="2" id="hospitals"></textarea>
+                    <md-hint class="pull-right" align="end">{{hospitals.length}} / 1024</md-hint>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="radioAntennas" class="col-md-2 control-label">Radios - Antenas</label>
+                <div class="col-md-8">
+                    <textarea class="form-control" [(ngModel)]="radioAntennas"
+                              maxlength="1024" rows="2" id="radioAntennas"></textarea>
+                    <md-hint class="pull-right" align="end">{{radioAntennas.length}} / 1024</md-hint>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="farms" class="col-md-2 control-label">Granjas</label>
+                <div class="col-md-8">
+                    <textarea class="form-control" [(ngModel)]="farms"
+                              maxlength="1024" rows="2" id="farms"></textarea>
+                    <md-hint class="pull-right" align="end">{{farms.length}} / 1024</md-hint>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="poles-input" class="col-md-2 control-label">Postes</label>
+                <div class="col-md-8">
+                    <li class="dropdown" [ngClass]="{open: arePowerPoles}">
+                    <input id="poles-input"
+                           autocomplete="off" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false"
+                           [(ngModel)]="powerPoleSearch"
+                           class="form-control dropdown-toggle"
+                           type="text" [ngFormControl]="term"/>
+                        <ul class="dropdown-menu">
+                            <li *ngFor="let powerPole of powerPoles | async" (click)="selectPowerPole(powerPole)">
+                                <a href="javascript:">{{powerPole.pole_code}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+            <div class="form-group">
+                <md-nav-list *ngIf="selectedPowerPoles">
+                    <md-list-item *ngFor="let powerPole of selectedPowerPoles">
+                        <a href="#"></a>
+                        <h4 style="font-size: 23px" md-line> {{powerPole.pole_code}} </h4>
+                        <p style="font-size: 18px" md-line>
+                            <span>De {{powerPole.pole_type }} </span>
+                        </p>
+                    </md-list-item>
+                </md-nav-list>
+            </div>
+
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-2">
-                    <button type="button" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button md-button color="primary" type="submit">GUARDAR</button>
                 </div>
             </div>
         </form>

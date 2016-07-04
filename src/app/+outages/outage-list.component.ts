@@ -36,6 +36,7 @@ export class OutageListComponent implements OnInit {
 
     ngOnInit() {
         this.loadScheduledOutages();
+        (<any>$).material.init();
     }
 
     /**
