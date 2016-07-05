@@ -1,5 +1,6 @@
 import { Component, OnInit , ViewChildren , QueryList, Inject} from '@angular/core';
 import {Control, CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from '@angular/common';
+import { Router} from '@angular/router';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
 import {MdIcon, MdIconRegistry} from '@angular2-material/icon';
@@ -12,11 +13,19 @@ import {PowerPole} from "../models/power-pole";
 import {Observable} from "rxjs/Observable";
 import '../shared/rxjs-operators';
 import {PowerPolesService} from "../services/power-poles.service";
+import { ScheduledOutagesService } from "../services/scheduled-outages.service";
+import {ScheduledOutage} from "../models/scheduled-outage";
 
 @Component({
     moduleId: module.id,
     selector: 'app-outage-add',
     templateUrl: 'outage-add.component.html',
+    styles: [`
+    .vcenter {
+        display: inline-block;
+        vertical-align: middle;
+        float: none;
+    }`],
     directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, MD_INPUT_DIRECTIVES, MD_PROGRESS_CIRCLE_DIRECTIVES,
         MD_BUTTON_DIRECTIVES, MdIcon, NKDatetime, MD_LIST_DIRECTIVES,
         TYPEAHEAD_DIRECTIVES, NgClass],
@@ -49,8 +58,13 @@ export class OutageAddComponent implements OnInit {
 
     public arePowerPoles:boolean;
 
+    public errorMsg:string;
+    public isRegistering:boolean;
 
-    constructor(private powerPolesService:PowerPolesService) {
+
+    constructor(private router:Router,
+                private powerPolesService:PowerPolesService,
+                private scheduledOutagesService:ScheduledOutagesService) {
         //noinspection TypeScriptUnresolvedFunction
         this.powerPoles = this.term.valueChanges
             .debounceTime(300)
@@ -76,12 +90,6 @@ export class OutageAddComponent implements OnInit {
 
     ngOnInit() {
         (<any>$).material.init();
-        this.zones = "";
-        this.industries = "";
-        this.buildings = "";
-        this.hospitals = "";
-        this.radioAntennas = "";
-        this.farms = "";
         this.selectedPowerPoles = [];
     }
 
@@ -101,6 +109,25 @@ export class OutageAddComponent implements OnInit {
             this.selectedPowerPole = null;
             this.powerPoleSearch = null;
         }
+    }
+
+    public registerOutage(event) {
+        event.preventDefault();
+        this.isRegistering = true;
+        this.scheduledOutagesService.saveScheduledOutage(new ScheduledOutage(
+            null, this.startDate, this.endDate, this.zones, this.industries,
+            this.buildings, this.hospitals, this.radioAntennas, this.farms,
+            1, this.selectedPowerPoles
+        )).subscribe(
+            schOutage => {
+                this.isRegistering = false;
+                this.router.navigateByUrl("/outages");
+            },
+            error => {
+                this.errorMsg = error;
+                this.isRegistering = false;
+            }
+        );
     }
 
 }

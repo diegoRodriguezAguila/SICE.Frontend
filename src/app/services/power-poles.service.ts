@@ -27,7 +27,6 @@ export class PowerPolesService {
 
     private extractData(res:Response) {
         let body = res.json();
-        console.log(body.data);
         return body.data;
     }
 

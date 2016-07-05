@@ -1,3 +1,4 @@
+import {PowerPole} from "../models/power-pole";
 /**
  * Created by drodriguez on 20/06/2016.
  */
@@ -11,5 +12,6 @@ export class ScheduledOutage {
                 public hospitals: string,
                 public radio_antennas: string,
                 public farms: string,
-                public status: number) { }
+                public status: number,
+                public power_poles:any[]) { }
 }

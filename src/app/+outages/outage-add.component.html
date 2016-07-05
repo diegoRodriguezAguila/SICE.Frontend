@@ -4,7 +4,7 @@
 </div>
 <div class="panel panel-primary">
     <div class="panel-body">
-        <form class="form-horizontal" method="post">
+        <form class="form-horizontal" (submit)="registerOutage($event)" role="form">
             <div class="form-group">
                 <label class="col-md-2 control-label">Fecha de inicio</label>
                 <div class="col-md-10">
@@ -24,7 +24,7 @@
                 <div class="col-md-8">
                     <textarea required class="form-control" [(ngModel)]="zones"
                               maxlength="1024" rows="2" id="zones"></textarea>
-                    <md-hint class="pull-right" align="end">{{zones.length}} / 1024</md-hint>
+                    <md-hint *ngIf="zones"  class="pull-right" align="end">{{zones.length}} / 1024</md-hint>
                 </div>
             </div>
             <div class="form-group">
@@ -32,7 +32,7 @@
                 <div class="col-md-8">
                     <textarea class="form-control" [(ngModel)]="industries"
                               maxlength="1024" rows="2" id="industries"></textarea>
-                    <md-hint class="pull-right" align="end">{{industries.length}} / 1024</md-hint>
+                    <md-hint *ngIf="industries" class="pull-right" align="end">{{industries.length}} / 1024</md-hint>
                 </div>
             </div>
             <div class="form-group">
@@ -40,7 +40,7 @@
                 <div class="col-md-8">
                     <textarea class="form-control" [(ngModel)]="buildings"
                               maxlength="1024" rows="2" id="buildings"></textarea>
-                    <md-hint class="pull-right" align="end">{{buildings.length}} / 1024</md-hint>
+                    <md-hint *ngIf="buildings" class="pull-right" align="end">{{buildings.length}} / 1024</md-hint>
                 </div>
             </div>
             <div class="form-group">
@@ -48,7 +48,7 @@
                 <div class="col-md-8">
                     <textarea class="form-control" [(ngModel)]="hospitals"
                               maxlength="1024" rows="2" id="hospitals"></textarea>
-                    <md-hint class="pull-right" align="end">{{hospitals.length}} / 1024</md-hint>
+                    <md-hint *ngIf="hospitals" class="pull-right" align="end">{{hospitals.length}} / 1024</md-hint>
                 </div>
             </div>
             <div class="form-group">
@@ -56,7 +56,7 @@
                 <div class="col-md-8">
                     <textarea class="form-control" [(ngModel)]="radioAntennas"
                               maxlength="1024" rows="2" id="radioAntennas"></textarea>
-                    <md-hint class="pull-right" align="end">{{radioAntennas.length}} / 1024</md-hint>
+                    <md-hint *ngIf="radioAntennas" class="pull-right" align="end">{{radioAntennas.length}} / 1024</md-hint>
                 </div>
             </div>
             <div class="form-group">
@@ -64,7 +64,7 @@
                 <div class="col-md-8">
                     <textarea class="form-control" [(ngModel)]="farms"
                               maxlength="1024" rows="2" id="farms"></textarea>
-                    <md-hint class="pull-right" align="end">{{farms.length}} / 1024</md-hint>
+                    <md-hint *ngIf="farms" class="pull-right" align="end">{{farms.length}} / 1024</md-hint>
                 </div>
             </div>
             <div class="form-group">
@@ -108,8 +108,20 @@
             </div>
 
             <div class="form-group">
-                <div class="col-md-10 col-md-offset-2">
+                <div *ngIf="!isRegistering && !errorMsg" class="col-md-10 col-md-offset-2">
                     <button md-button color="primary" type="submit">GUARDAR</button>
+                </div>
+                <div class="form-group" *ngIf="isRegistering && !errorMsg">
+                    <md-spinner class=" col-md-offset-2 col-md-1 vcenter" style="height: 80px; width: 80px;"></md-spinner>
+                    <h4 class="col-md-8 vcenter">Registrando corte programado&#x2026;</h4>
+                </div>
+                <div *ngIf="errorMsg" class="col-md-10 col-md-offset-2
+                        alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    Ocurrió un error al registrar el corte programado:<br/><br/>
+                    <strong>{{errorMsg}}</strong><br/><br/>
+                    <a href="javascript:" (click)="errorMsg = null"
+                       class="alert-link">Intentarlo de nuevo</a>
                 </div>
             </div>
         </form>
