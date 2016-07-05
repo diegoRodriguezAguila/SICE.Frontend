@@ -20,6 +20,7 @@ import {PowerPolesService} from "../services/power-poles.service";
     directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, MD_INPUT_DIRECTIVES, MD_PROGRESS_CIRCLE_DIRECTIVES,
         MD_BUTTON_DIRECTIVES, MdIcon, NKDatetime, MD_LIST_DIRECTIVES,
         TYPEAHEAD_DIRECTIVES, NgClass],
+    providers: [MdIconRegistry]
 })
 export class OutageAddComponent implements OnInit {
 
@@ -49,7 +50,6 @@ export class OutageAddComponent implements OnInit {
     public arePowerPoles:boolean;
 
 
-
     constructor(private powerPolesService:PowerPolesService) {
         //noinspection TypeScriptUnresolvedFunction
         this.powerPoles = this.term.valueChanges
@@ -57,8 +57,14 @@ export class OutageAddComponent implements OnInit {
             .distinctUntilChanged()
             .switchMap(term => this.powerPolesService.getPowerPoles(term))
             .map(poles => {
+                return poles.filter(p => this.selectedPowerPoles
+                    .find(pol => p.pole_code==pol.pole_code) == null);
+            })
+            .map(poles => {
                 this.arePowerPoles = poles.length > 0;
-                this.selectedPowerPole = null;
+                //noinspection TypeScriptUnresolvedVariable
+                if (poles.find(p => p.pole_code == this.powerPoleSearch) == null)
+                    this.selectedPowerPole = null;
                 return poles;
             });
     }
@@ -76,15 +82,25 @@ export class OutageAddComponent implements OnInit {
         this.hospitals = "";
         this.radioAntennas = "";
         this.farms = "";
+        this.selectedPowerPoles = [];
     }
 
     public startDateChanged(date:Date) {
         this.endDatepickerOptions.startDate = date;
     }
 
-    public selectPowerPole(powerPole:any){
+    public selectPowerPole(powerPole:PowerPole) {
         this.selectedPowerPole = powerPole;
         this.powerPoleSearch = powerPole.pole_code;
+    }
+
+    public addSelectedPole() {
+        if (this.selectedPowerPole != null &&
+            this.selectedPowerPoles.find(p => p.pole_code == this.selectedPowerPole.pole_code) == null) {
+            this.selectedPowerPoles.push(this.selectedPowerPole);
+            this.selectedPowerPole = null;
+            this.powerPoleSearch = null;
+        }
     }
 
 }

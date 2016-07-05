@@ -68,33 +68,43 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="poles-input" class="col-md-2 control-label">Postes</label>
-                <div class="col-md-8">
-                    <li class="dropdown" [ngClass]="{open: arePowerPoles}">
+                <label for="poles-input" class="col-md-2 control-label">Agregar postes</label>
+                <div class="col-md-7 dropdown" [ngClass]="{open: arePowerPoles}">
                     <input id="poles-input"
                            autocomplete="off" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false"
                            [(ngModel)]="powerPoleSearch"
                            class="form-control dropdown-toggle"
                            type="text" [ngFormControl]="term"/>
-                        <ul class="dropdown-menu">
-                            <li *ngFor="let powerPole of powerPoles | async" (click)="selectPowerPole(powerPole)">
-                                <a href="javascript:">{{powerPole.pole_code}}</a>
-                            </li>
-                        </ul>
-                    </li>
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let powerPole of powerPoles | async" (click)="selectPowerPole(powerPole)">
+                            <a href="javascript:">{{powerPole.pole_code}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-1">
+                    <button md-mini-fab color="primary" [disabled]="selectedPowerPole==null"
+                        (click)="addSelectedPole()" type="button" >
+                        <md-icon class="md-24">add</md-icon>
+                    </button>
                 </div>
             </div>
             <div class="form-group">
-                <md-nav-list *ngIf="selectedPowerPoles">
+                <label class="col-md-2 control-label">Postes seleccionados</label>
+                <md-list *ngIf="selectedPowerPoles.length > 0" class="col-md-8" >
                     <md-list-item *ngFor="let powerPole of selectedPowerPoles">
-                        <a href="#"></a>
-                        <h4 style="font-size: 23px" md-line> {{powerPole.pole_code}} </h4>
-                        <p style="font-size: 18px" md-line>
-                            <span>De {{powerPole.pole_type }} </span>
+                        <h4 style="font-size: 18px" md-line> {{powerPole.pole_code}} </h4>
+                        <p style="font-size: 15px" md-line>
+                            <span>Poste de {{powerPole.material}} {{powerPole.tension_type}}</span>
+                        </p>
+                        <p style="font-size: 13px" md-line>
+                            <span>Estado: <b>{{powerPole.condition }}</b></span>
                         </p>
                     </md-list-item>
-                </md-nav-list>
+                </md-list>
+                <label class="control-label" *ngIf="selectedPowerPoles.length == 0" >
+                    <i>No se seleccionó ningún poste para este corte</i>
+                </label>
             </div>
 
             <div class="form-group">
